@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.models.Lenguaje;
 import com.example.demo.services.LenguajeService;
 
-
-
 @Controller
 public class LenguajeController {
     private final LenguajeService lenguajeService;
@@ -66,5 +64,12 @@ public class LenguajeController {
     	}
     	return "index"; //edit
     	
+    }
+    @RequestMapping("/lenguajes/show/{id}")
+    public String show(@PathVariable("id") Long id, Model model) {
+    	
+        model.addAttribute("lenguaje", lenguajeService.findLenguaje(id));
+    	
+    	return "show";
     }
 }

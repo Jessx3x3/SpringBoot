@@ -22,12 +22,6 @@
 				<p>Name: <c:out value="${lenguaje.name}"/></p>
 				<p>Creator: <c:out value="${lenguaje.creator}"/></p>
 				<p>Version: <c:out value="${lenguaje.version}"/></p>
-				<a href="/lenguajes/${lenguaje.id}/edit">Edit Language</a>
-				
-				<form action="/lenguajes/${lenguaje.id}/delete" method="post">
-				    <input type="hidden" name="_method" value="delete">
-				    <input type="submit" value="Delete">
-				</form>
 			</div>
 		</div>
 	</div>
