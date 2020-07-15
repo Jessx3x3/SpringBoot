@@ -35,7 +35,7 @@
 				      <td scope="row"><c:out value="${lenguaje.version}"/></td>
 				      <td>
 				      	  <form action="/lenguajes/${lenguaje.id}/delete" method="post">
-							    <input type="hidden" name="_method" value="delete">
+							    <input type="hidden" name="aux" value="delete">
 							    <input class="btn btn-danger" type="submit" value="Delete">
 					  	  </form>
 					  </td>

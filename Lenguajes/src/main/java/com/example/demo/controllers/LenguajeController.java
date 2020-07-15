@@ -56,15 +56,20 @@ public class LenguajeController {
             return "redirect:/lenguajes";//redirect:/lenguajes
         }
     }
-    @RequestMapping(value="/lenguajes/{id}/delete", method=RequestMethod.DELETE)
+    @RequestMapping(value="/lenguajes/{id}/delete", method=RequestMethod.POST)
     public String destroy(@PathVariable("id") Long id, @RequestParam(value="aux") String aux) {
-    	if(aux.equals("_method")) {
+    	if(aux.equals("delete")) {
     		lenguajeService.deleteLenguaje(id);
     		 return "redirect:/lenguajes";
     	}
     	return "index"; //edit
     	
     }
+    
+    
+    
+    
+    
     @RequestMapping("/lenguajes/show/{id}")
     public String show(@PathVariable("id") Long id, Model model) {
     	
