@@ -4,32 +4,31 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Add Ninja</title>
+	<title>Add Contact</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
 	<div id="content" role="main" class="container-lg" align="center">
 		<div class="row">
 			<div class="col-lg-12 card">
-				<p class="h3">Add Ninja</p>
+				<p class="h3">Add Contact</p>
 			</div>
 		</div>	
 		<div class="row">
 			<div class="col-lg-12 card">
-				<form action="/ninjas" method="post" modelAttribute="ninja">
+				<form action="/contactos" method="post" modelAttribute="contacto">
 				
-					<select name="dojo">
-						<c:forEach items="${ninjas}" var="ninja">
-							<option value=<c:out value="${ninja.dojo.id}"/>><c:out value="${ninja.dojo.name}"/></option>
+					<input type="text" name="adress" placeholder="Adress">
+					<input type="text" name="city" placeholder="City">
+					<input type="text" name="state" placeholder="State">
+					
+					<select name="estudiante">
+						<c:forEach items="${contactos}" var="contacto">
+							<option value="<c:out value="${contacto.estudiante.id}"/>"><c:out value="${contacto.estudiante.firstName}"/></option>
 						</c:forEach>
 					</select>
-				
-					<!-- <input type="numeric" name="dojo" placeholder="dojo's ID">-->
-					<input type="text" name="firstName" placeholder="Ninja's Name">
-					<input type="text" name="lastName" placeholder="Ninja's LastName">
-					<input type="text" name="age" placeholder="Ninja's Age">
 				    
-				    <input type="submit" class="btn btn-primary" value="Add"/>
+				    <input type="submit" class="btn btn-primary" value="Submit"/>
 				</form>  
 			</div>
 		</div>

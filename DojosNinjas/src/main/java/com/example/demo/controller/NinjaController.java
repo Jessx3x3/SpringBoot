@@ -29,7 +29,12 @@ public class NinjaController {
 	}
 	
 	@RequestMapping(value="/ninjas/new", method=RequestMethod.GET)
-	public String newDojo(@ModelAttribute("ninja") Ninja ninja) {
+	public String newDojo(Model model) {
+		
+		List<Ninja> ninjas = ninjaService.allNinjas();
+		
+		model.addAttribute("ninjas", ninjas);
+		
 		return "addNinja";
 	}
 
@@ -43,6 +48,8 @@ public class NinjaController {
 			Dojo newDojo = dojoService.getById(dojo);
 			
 			Ninja ninjas = ninjaService.crearNinja(newDojo, firstName, lastName, age);
+			
+			newDojo.getNinjas().add(ninjas);
 			
 			model.addAttribute("ninjas", ninjas);
 			return "redirect:/ninjas/index";
