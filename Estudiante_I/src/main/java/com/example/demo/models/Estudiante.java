@@ -25,8 +25,10 @@ public class Estudiante {
 	
 	@OneToOne(mappedBy="estudiante", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Contacto contacto;
+	
+	public Estudiante() {}
 
-	public Estudiante(Long id, String firstName, String lastName, Integer age) {
+	public Estudiante(String firstName, String lastName, Integer age) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;

@@ -69,6 +69,14 @@ public class Contacto {
 	public void setState(String state) {
 		this.state = state;
 	}
+
+	public Estudiante getEstudiante() {
+		return estudiante;
+	}
+
+	public void setEstudiante(Estudiante estudiante) {
+		this.estudiante = estudiante;
+	}
 	
 	
 	

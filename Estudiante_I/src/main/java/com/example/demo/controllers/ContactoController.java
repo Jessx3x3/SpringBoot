@@ -1,16 +1,15 @@
 package com.example.demo.controllers;
 
-import java.util.List;
 
-import javax.validation.Valid;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.models.Contacto;
 import com.example.demo.models.Estudiante;
@@ -28,40 +27,27 @@ public class ContactoController {
 		this.contactoService = contactoService;
 	}
 	
-	@RequestMapping(value="contactos/new", method=RequestMethod.GET)
-	public String newContact(Model model) {
+	@RequestMapping(value = "/contacts/create")
+	public String testComplexObject (@RequestParam(value="student") Long student ,@RequestParam(value="address") String address, @RequestParam(value="city") String city, @RequestParam(value="state") String state){
+	   
+		Estudiante estudiante = estudianteService.getById(student);
 		
-		List<Contacto> contactos = contactoService.getContacto();
+		Contacto contacto = new Contacto(address, city, state, estudiante);
 		
-		model.addAttribute("contactos",contactos);
-
+		contactoService.addContacto(contacto);
 		
-		return "addContact";
-	}
-
-	@RequestMapping(value="contactos", method=RequestMethod.POST)
-	public String addContact(@Valid @ModelAttribute("address") String address, @ModelAttribute("city") String city, @ModelAttribute("state") String state, @ModelAttribute("estudiante") Long estudiante,  BindingResult result ,Model model) {
+		return "redirect:/contacts/dashboard";
 		
-		if(result.hasErrors()) {
-		return "addContact";
-		}else {
-			Estudiante estudiantes = estudianteService.getById(estudiante);
-			
-			Contacto contactos = contactoService.crearContacto(address, city, state, estudiantes);
-			
-			model.addAttribute("contactos", contactos);
-			
-			return "redirect:/contactos/estudiante";
-		}
+		///contacts/create?student=10&address=1234%20Some%20Street&city=Los%20Angeles&state=CA
 	}
 	
-	@RequestMapping(value="contactos/estudiante", method=RequestMethod.GET)
-	public String index(Model model) {
-		
+	@RequestMapping(value="contacts/dashboard", method=RequestMethod.GET)
+	public String showValue(Model model) {
 		List<Contacto> contactos = contactoService.getContacto();
 		
 		model.addAttribute("contactos", contactos);
 		
-		return "show";
+		return "dashboardContacto";
 	}
+
 }
